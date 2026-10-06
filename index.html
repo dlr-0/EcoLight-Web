@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EcoLight · Lámparas artesanales de materiales reciclados</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--board:#c8a678;--paper:#fbf5e6;--ink:#3b2a1d;--muted:#7a6552;--green:#3f7d4e;--green2:#2c5a38;--sun:#f6b93b;--sand:#efe3cb;--brown:#8a5a36;--glow:#f6b93b;--sh:0 10px 30px rgba(60,40,20,.2);--r:22px;--s:1;
+--tex:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='700' height='700'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='.011 .018' numOctaves='5' seed='7' stitchTiles='stitch'/><feDiffuseLighting lighting-color='%23fff' surfaceScale='2.4'><feDistantLight azimuth='50' elevation='60'/></feDiffuseLighting></filter><rect width='100%' height='100%' filter='url(%23c)'/></svg>");
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--board:#6b5338;--paper:#2b241b;--ink:#f3ead8;--muted:#c0ae92;--sand:#352d21;--green:#74c488;--green2:#4d9a63}}
+:root[data-theme="dark"]{--board:#6b5338;--paper:#2b241b;--ink:#f3ead8;--muted:#c0ae92;--sand:#352d21;--green:#74c488;--green2:#4d9a63}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:calc(110px + env(safe-area-inset-top,0px))}
+body{margin:0;color:var(--ink);font-family:Nunito,system-ui,sans-serif;line-height:1.6;background:var(--tex),var(--board);background-blend-mode:multiply;background-attachment:fixed}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.15;margin:0 0 .5em}
+a{color:inherit;text-decoration:none}
+.sheet{position:relative;z-index:2;max-width:1160px;margin:26px auto;padding:64px 36px;border-radius:var(--r);background:var(--tex),var(--paper);background-blend-mode:soft-light;box-shadow:var(--sh)}
+.sheet.tight{padding:40px 36px}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20}
+.ann{background:var(--green2);color:#fff;text-align:center;font-size:.85rem;font-weight:700;padding:6px 10px}
+.bar{background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(10px);box-shadow:0 4px 18px rgba(60,40,20,.2)}
+nav{max-width:1160px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:10px 18px;padding:10px 20px;flex-wrap:wrap}
+.logo{font:800 1.5rem Fraunces,serif;color:var(--green)}.logo span{color:var(--sun)}
+nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-weight:700}
+nav ul a{padding:4px 2px;border-bottom:2px solid transparent}nav ul a:hover{border-color:var(--sun)}
+.btn{display:inline-block;border:0;cursor:pointer;font:800 .98rem Nunito,sans-serif;padding:13px 26px;border-radius:999px;background:var(--sun);color:#3b2a1d;box-shadow:0 8px 20px rgba(246,185,59,.45);transition:transform .25s,box-shadow .25s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(246,185,59,.6)}.btn:active{transform:scale(.97)}
+.btn.g{background:var(--green);color:#fff;box-shadow:0 8px 20px rgba(63,125,78,.4)}.btn.o{background:transparent;color:var(--green);box-shadow:inset 0 0 0 2px var(--green)}.btn.s{padding:9px 18px;font-size:.88rem}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.tag{display:inline-block;background:var(--sand);color:var(--green);font-weight:800;padding:6px 16px;border-radius:999px;font-size:.85rem}
+h1{font-size:clamp(2.2rem,5vw,3.7rem);font-weight:800}h1 em{color:var(--green);font-style:normal}
+.hero p{color:var(--muted);font-size:1.1rem;max-width:500px}
+.cta{display:flex;gap:14px;flex-wrap:wrap;margin:24px 0}
+.kpis{display:flex;gap:26px;flex-wrap:wrap}.kpis b{display:block;font:800 1.6rem Fraunces,serif;color:var(--brown)}.kpis small{color:var(--muted)}
+.stage{display:grid;place-items:center;min-height:380px;border-radius:var(--r);background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--glow) 25%,var(--sand)),var(--sand));padding:60px 20px;overflow:hidden}
+.lamp{position:relative;width:150px;height:240px;border-radius:60px 60px 40px 40px;background:linear-gradient(160deg,color-mix(in srgb,var(--glow) 80%,#fff),var(--glow));box-shadow:0 0 60px 16px color-mix(in srgb,var(--glow) 50%,transparent);animation:glow 4s ease-in-out infinite;transition:all .5s;transform:scale(var(--s))}
+.lamp::before{content:"";position:absolute;left:50%;top:-30px;width:10px;height:32px;background:var(--brown);transform:translateX(-50%);border-radius:5px}
+.lamp::after{content:"";position:absolute;left:50%;bottom:-22px;width:110px;height:24px;background:var(--brown);transform:translateX(-50%);border-radius:14px}
+.lamp.l{border-radius:16px;width:135px}
+.lamp.c{border-radius:8px;width:170px;height:210px;background:repeating-linear-gradient(0deg,var(--glow) 0 14px,color-mix(in srgb,var(--glow) 65%,#8a5a36) 14px 18px)}
+.pat{position:absolute;inset:0;border-radius:inherit}
+.p-s .pat{background:radial-gradient(circle,#fffc 2px,transparent 3px) 0 0/22px 22px}
+.p-h .pat{background:repeating-linear-gradient(45deg,#0000001f 0 3px,transparent 3px 16px),repeating-linear-gradient(-45deg,#ffffff40 0 2px,transparent 2px 16px)}
+.p-o .pat{background:repeating-radial-gradient(circle at 50% 130%,#0000001f 0 4px,transparent 4px 16px)}
+.sp{display:none;position:absolute;top:-44px;left:50%;width:76px;height:16px;transform:translateX(-50%) skewX(-22deg);background:repeating-linear-gradient(90deg,#1f3c5a 0 10px,#3a6ea0 10px 12px);border-radius:3px}
+.sol .sp{display:block}.sol::before{display:none}
+.eng{position:absolute;bottom:14px;width:100%;text-align:center;font:800 .8rem Fraunces,serif;color:#3b2a1dcc;letter-spacing:.1em}
+@keyframes glow{50%{box-shadow:0 0 80px 28px color-mix(in srgb,var(--glow) 55%,transparent)}}
+h2{font-size:clamp(1.8rem,4vw,2.6rem);text-align:center}
+.sub{text-align:center;color:var(--muted);max-width:600px;margin:0 auto 32px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:22px}
+.card{background:var(--sand);border-radius:var(--r);padding:22px;box-shadow:0 6px 18px rgba(60,40,20,.12);transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-6px);box-shadow:var(--sh)}
+.thumb{height:170px;display:grid;place-items:center;margin-bottom:10px;border-radius:16px;background:var(--paper)}
+.thumb .lamp{zoom:.55;animation:none}
+.card h3{font-size:1.25rem;margin-bottom:2px}.card p{color:var(--muted);font-size:.92rem;margin:4px 0 12px;flex:1}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px}.price{font:800 1.3rem Fraunces,serif;color:var(--brown)}
+.badge{font-size:.72rem;font-weight:800;background:var(--green);color:#fff;border-radius:999px;padding:3px 11px}
+.chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
+.chips button,.opts button{border:2px solid transparent;background:var(--sand);color:var(--ink);font:700 .92rem Nunito,sans-serif;padding:9px 18px;border-radius:999px;cursor:pointer;transition:all .2s}
+.chips button.on,.opts button.on{border-color:var(--green);color:var(--green);background:var(--paper)}
+.custom{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.opts{display:flex;gap:9px;flex-wrap:wrap;margin:6px 0 18px}.opts .sw{width:36px;height:36px;padding:0;border-radius:50%}
+.lab{font-weight:800;display:block}
+input[type=text]{width:100%;padding:12px 16px;border-radius:999px;border:2px solid var(--sand);background:var(--paper);color:var(--ink);font:600 1rem Nunito,sans-serif}
+.tot{display:flex;align-items:center;gap:18px;margin-top:20px;flex-wrap:wrap}.tot b{font:800 2rem Fraunces,serif;color:var(--brown)}
+.num{font:800 2.6rem Fraunces,serif;color:var(--green);display:block}.ctr{text-align:center}
+.steps{counter-reset:s}.steps .card::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--sun);color:#3b2a1d;font:800 1.2rem Fraunces,serif;margin-bottom:12px}
+.q{font-style:italic}.who{font-weight:800;font-size:.9rem;color:var(--green)}
+details{background:var(--sand);border-radius:16px;padding:16px 20px;margin-bottom:12px}summary{cursor:pointer;font-weight:800}details p{color:var(--muted);margin:10px 0 0}
+.news{display:flex;gap:10px;max-width:520px;margin:18px auto 0}
+.final{background:linear-gradient(135deg,var(--green2),var(--green));color:#fff;border-radius:var(--r);padding:44px 24px;text-align:center}
+.final p{opacity:.92;margin-bottom:6px}
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px}.info h3{font-size:1.1rem}.info p{margin:.2em 0;color:var(--muted);font-size:.95rem}.info a{color:var(--green);font-weight:700}
+.map{border-radius:16px;min-height:140px;background:linear-gradient(135deg,#9bc59e,#d7e6c3);display:grid;place-items:center;font-weight:800;color:#2c5a38;margin-bottom:10px;font-size:2rem}
+.pays{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}.pays span{background:var(--sand);border-radius:8px;padding:4px 12px;font-size:.78rem;font-weight:800;color:var(--muted)}
+.legal{text-align:center;color:var(--muted);font-size:.82rem;margin-top:26px}.legal a{margin:0 8px;text-decoration:underline}
+.vine{position:fixed;top:0;height:100vh;width:110px;z-index:1;pointer-events:none;overflow:visible}
+.vine.l{left:0}.vine.r{right:0;transform:scaleX(-1)}.vine g.sw1{transform-origin:50% 0;animation:sway 7s ease-in-out infinite alternate}
+.vine .lf{fill:var(--green)}.vine .lf.d{fill:var(--green2)}.vine .bl{fill:var(--sun);animation:tw 3s ease-in-out infinite alternate}
+@keyframes sway{to{transform:rotate(1.2deg)}}@keyframes tw{to{opacity:.4}}
+#cart{position:relative}#cart i{font-style:normal;background:var(--sun);color:#3b2a1d;border-radius:999px;padding:1px 9px;margin-left:6px}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,120px);background:var(--green2);color:#fff;padding:12px 22px;border-radius:999px;font-weight:700;z-index:50;transition:transform .4s;box-shadow:var(--sh)}#toast.on{transform:translate(-50%,0)}
+.rv{opacity:0;transform:translateY(26px);transition:all .7s}.rv.in{opacity:1;transform:none}
+@media(max-width:860px){.hero,.custom{grid-template-columns:1fr}.sheet{padding:40px 18px;margin:16px 10px}.vine{width:60px;opacity:.7}nav ul{order:3;width:100%;overflow-x:auto;gap:16px;white-space:nowrap}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+.wow{position:relative;overflow:hidden;border-radius:calc(var(--r) - 6px);min-height:720px;padding:310px 24px 70px;text-align:center;color:#fff7e6;background:radial-gradient(ellipse at 50% 0%,#4a3a26,#1c170f 72%);display:flex;justify-content:center}
+.wow::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 12%,#f6b93b4d,transparent 62%);opacity:0;transition:opacity 2.2s}.wow.lit::before{opacity:1}
+.wc{position:relative;z-index:2;max-width:760px}.wc .tag{background:#ffffff1c;color:#ffe9b0;backdrop-filter:blur(6px)}
+.wow h1{font-size:clamp(2.4rem,6.4vw,4.6rem);margin:18px 0 14px;text-shadow:0 4px 24px #0008}
+.w{display:inline-block;animation:up .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*.13s + .5s)}
+.wow h1 em{background:linear-gradient(90deg,#ffd36b,#f6b93b,#fff3c4,#f6b93b,#ffd36b);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:up .9s both .95s,shine 5s linear infinite 2s}
+@keyframes up{from{opacity:0;transform:translateY(34px) scale(.96)}}@keyframes shine{to{background-position:250% 0}}
+.wow p{color:#f0e2c4;font-size:1.15rem;max-width:560px;margin:0 auto}.wow .cta{justify-content:center}.wow .btn.o{color:#ffe9b0;box-shadow:inset 0 0 0 2px #ffe9b09a}
+.glass{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:30px}.glass div{background:#ffffff14;border:1px solid #ffffff2b;backdrop-filter:blur(8px);border-radius:18px;padding:12px 24px}.glass b{display:block;font:800 1.5rem Fraunces,serif;color:var(--sun)}.glass small{opacity:.8}
+.hls{position:absolute;inset:0 0 auto 0;height:300px;z-index:1;transition:transform .4s}
+.hl{position:absolute;top:0;display:flex;flex-direction:column;align-items:center;width:130px;margin-left:-65px;transform-origin:50% 0;animation:swing 6s ease-in-out infinite alternate;animation-delay:var(--d)}
+@keyframes swing{from{transform:rotate(-2.8deg)}to{transform:rotate(2.8deg)}}
+.cord{display:block;width:3px;height:var(--h);background:linear-gradient(#5b4430,#a06a40)}
+.sh{position:relative;cursor:pointer}.sh::before{content:"";position:absolute;left:50%;top:50%;width:360px;height:360px;transform:translate(-50%,-50%);background:radial-gradient(circle,color-mix(in srgb,var(--c) 40%,transparent),transparent 65%);opacity:0;transition:opacity 1.2s;pointer-events:none}
+.body{display:block;position:relative;background:#5f503c;transition:background 1s,box-shadow 1s}
+.bt .body{width:56px;height:112px;border-radius:26px 26px 16px 16px}.cn .body{width:80px;height:92px;border-radius:10px;background-image:repeating-linear-gradient(0deg,#0003 0 2px,transparent 2px 12px)}.cb .body{width:104px;height:88px;clip-path:polygon(18% 0,82% 0,100% 100%,0 100%)}
+.on .sh::before{opacity:1}.on .body{background-color:var(--c);background-image:linear-gradient(160deg,#fff7,transparent 60%);box-shadow:0 0 50px 14px color-mix(in srgb,var(--c) 55%,transparent)}.on .cn .body{background-image:repeating-linear-gradient(0deg,#0003 0 2px,transparent 2px 12px),linear-gradient(160deg,#fff7,transparent 60%)}
+.sh:hover .body{filter:brightness(1.15)}
+.ff{position:absolute;z-index:1;width:5px;height:5px;border-radius:50%;background:#ffd36b;box-shadow:0 0 10px 3px #ffd36baa;opacity:.6;pointer-events:none;animation:ff var(--t) ease-in-out infinite alternate}
+@keyframes ff{from{transform:none;opacity:.1}50%{opacity:1}to{transform:translate(var(--x),var(--y));opacity:.2}}
+.cue{position:absolute;z-index:2;bottom:14px;left:50%;margin-left:-20px;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:#ffffff1f;color:#ffe9b0;font-weight:800;animation:bob 1.8s ease-in-out infinite}@keyframes bob{50%{transform:translateY(8px)}}
+@media(max-width:860px){.wow{padding-top:290px;min-height:auto}.hl:nth-child(2),.hl:nth-child(4){display:none}.hl:nth-child(1){left:14%!important}.hl:nth-child(5){left:86%!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="v" viewBox="0 0 100 1000" overflow="visible"><g class="sw1">
+<path d="M30 0C0 100 70 200 30 300S0 500 30 600 70 800 30 1000" fill="none" stroke="#2c5a38" stroke-width="5" stroke-linecap="round"/>
+<g class="lf"><path d="M18 90q22-26 44-8-22 26-44 8z"/><path d="M42 250q28-8 40 16-28 8-40-16z"/><path d="M20 420q26-24 42-4-24 24-42 4z"/><path d="M40 560q30-6 38 20-28 6-38-20z"/><path d="M14 720q24-26 46-6-24 26-46 6z"/><path d="M38 880q30-8 40 16-30 8-40-16z"/></g>
+<g class="lf d"><path d="M30 170q-26-18-24-40 26 14 24 40z"/><path d="M26 340q-26-14-26-38 26 12 26 38z"/><path d="M34 500q26-16 30-40-28 12-30 40z"/><path d="M18 650q-22-18-18-42 24 14 18 42z"/><path d="M40 800q28-12 30-36-28 10-30 36z"/><path d="M26 950q-24-16-22-40 24 12 22 40z"/></g>
+<circle class="bl" cx="30" cy="205" r="6"/><circle class="bl" cx="42" cy="530" r="5"/><circle class="bl" cx="22" cy="760" r="6"/>
+</g></symbol></defs></svg>
+<svg class="vine l"><use href="#v" width="110" height="100%"/></svg>
+<svg class="vine r"><use href="#v" width="110" height="100%"/></svg>
+
+<div class="top"><div class="ann">🌱 Envío gratis desde 50 € · Embalaje 100% reciclado · Garantía de 2 años</div>
+<div class="bar"><nav>
+<a class="logo" href="#inicio">Eco<span>Light</span> 💡</a>
+<ul><li><a href="#catalogo">Catálogo</a></li><li><a href="#personaliza">Personaliza</a></li><li><a href="#impacto">Impacto</a></li><li><a href="#proceso">Proceso</a></li><li><a href="#opiniones">Opiniones</a></li><li><a href="#tienda">Tienda</a></li></ul>
+<button class="btn g s" id="cart">🛒 Carrito<i id="cn">0</i> · <span id="ct">0 €</span></button>
+</nav></div></div>
+
+<main id="inicio">
+<section class="sheet" style="padding:14px"><div class="wow">
+<div class="hls">
+<div class="hl" style="left:10%;--h:70px;--c:#f6b93b;--d:-1s"><i class="cord"></i><div class="sh bt"><b class="body"></b></div></div>
+<div class="hl" style="left:30%;--h:140px;--c:#7fc08a;--d:-3s"><i class="cord"></i><div class="sh cn"><b class="body"></b></div></div>
+<div class="hl" style="left:50%;--h:40px;--c:#ffd36b;--d:-2s"><i class="cord"></i><div class="sh cb"><b class="body"></b></div></div>
+<div class="hl" style="left:70%;--h:120px;--c:#e58f5a;--d:-4s"><i class="cord"></i><div class="sh bt"><b class="body"></b></div></div>
+<div class="hl" style="left:90%;--h:80px;--c:#f4e4b5;--d:-5s"><i class="cord"></i><div class="sh cn"><b class="body"></b></div></div>
+</div>
+<div class="wc">
+<span class="tag">✨ Toca las lámparas para encender la luz</span>
+<h1><span class="w" style="--i:0">Dale</span> <span class="w" style="--i:1">a</span> <span class="w" style="--i:2">la</span> <span class="w" style="--i:3">basura</span> <span class="w" style="--i:4">una</span><br><em class="w" style="--i:5">segunda luz</em></h1>
+<p>Lámparas artesanales de botellas, latas y cartón reciclado. Únicas, personalizables y, en muchos modelos, alimentadas por el sol.</p>
+<div class="cta"><a class="btn" href="#catalogo">Explorar catálogo</a><a class="btn o" href="#personaliza">Diseñar mi lámpara</a></div>
+<div class="glass"><div><b>1,2 M</b><small>lámparas creadas</small></div><div><b>4,9 ★</b><small>38.000 reseñas</small></div><div><b>−40 %</b><small>consumo energético</small></div></div>
+</div>
+<a class="cue" href="#catalogo" aria-label="Bajar">↓</a>
+</div></section>
+
+<section class="sheet tight" style="padding-top:30px;padding-bottom:30px"><div class="info" style="text-align:center">
+<div><b>🚚 Envío 48 h</b><p>A toda la península</p></div><div><b>↩️ 30 días</b><p>Devolución gratuita</p></div><div><b>🔒 Pago seguro</b><p>Tarjeta, PayPal y Bizum</p></div><div><b>🏅 Certificada</b><p>Materiales 100% reciclados</p></div>
+</div></section>
+
+<section class="sheet" id="catalogo">
+<h2>Catálogo 2026</h2><p class="sub">Doce piezas de autor, cada una con su propia historia. Filtra por material o por energía solar.</p>
+<div class="chips" id="flt"><button class="on" data-f="all">Todas</button><button data-f="b">Botella</button><button data-f="l">Lata</button><button data-f="c">Cartón</button><button data-f="s">☀️ Solares</button></div>
+<div class="grid" id="grid"></div>
+</section>
+
+<section class="sheet" id="personaliza">
+<h2>Diseña tu lámpara</h2><p class="sub">Combina material, patrón, color de luz y tamaño. El precio se actualiza al instante.</p>
+<div class="custom">
+<div class="stage"><div class="lamp" id="pl"><span class="pat"></span><span class="sp"></span><span class="eng" id="eg"></span></div></div>
+<div>
+<span class="lab">Material</span><div class="opts" id="mat"><button class="on" data-v="b">Botella</button><button data-v="l">Lata</button><button data-v="c">Cartón</button></div>
+<span class="lab">Patrón calado</span><div class="opts" id="pt"><button class="on" data-v="p-s">Estrellas</button><button data-v="p-h">Hojas</button><button data-v="p-o">Olas</button><button data-v="">Liso</button></div>
+<span class="lab">Color de luz</span><div class="opts" id="col"><button class="sw on" data-v="#f6b93b" style="background:#f6b93b"></button><button class="sw" data-v="#7fc08a" style="background:#7fc08a"></button><button class="sw" data-v="#e58f5a" style="background:#e58f5a"></button><button class="sw" data-v="#f4e4b5" style="background:#f4e4b5"></button><button class="sw" data-v="#d9a066" style="background:#d9a066"></button></div>
+<span class="lab">Tamaño</span><div class="opts" id="sz"><button data-v="0.85">S</button><button class="on" data-v="1">M</button><button data-v="1.15">L</button></div>
+<span class="lab">Extras</span><div class="opts"><button id="sol">☀️ Energía solar +12 €</button></div>
+<input type="text" id="nm" maxlength="12" placeholder="Grabado personalizado (+5 €, máx. 12)">
+<div class="tot"><b id="pr">36 €</b><button class="btn" id="add">Añadir al carrito</button></div>
+</div></div></section>
+
+<section class="sheet" id="impacto">
+<h2>Impacto real, medido</h2><p class="sub">Auditado cada año por entidades independientes.</p>
+<div class="grid ctr">
+<div class="card rv"><span class="num" data-n="3400000">0</span>botellas rescatadas</div>
+<div class="card rv"><span class="num" data-n="2100000">0</span>latas transformadas</div>
+<div class="card rv"><span class="num" data-n="860">0</span>toneladas de CO₂ evitadas</div>
+<div class="card rv"><span class="num" data-n="120">0</span>empleos locales y de inserción</div>
+</div></section>
+
+<section class="sheet" id="proceso">
+<h2>Del residuo a la luz</h2><p class="sub">Un proceso artesanal, trazable y local.</p>
+<div class="grid steps">
+<div class="card rv"><h3>Recogemos</h3><p>Material de comercios, hostelería y puntos de recogida vecinales.</p></div>
+<div class="card rv"><h3>Limpiamos y cortamos</h3><p>Higienizamos y damos forma a mano en nuestro taller.</p></div>
+<div class="card rv"><h3>Calamos el diseño</h3><p>Cada patrón se talla pieza a pieza para jugar con la luz.</p></div>
+<div class="card rv"><h3>Iluminamos</h3><p>LED de bajo consumo o panel solar con batería de 12 h.</p></div>
+</div></section>
+
+<section class="sheet" id="opiniones">
+<h2>Lo que dicen nuestros clientes</h2><p class="sub">Más de 38.000 valoraciones verificadas.</p>
+<div class="grid">
+<div class="card rv"><p class="q">“Parece una pieza de galería. La luz de la lámpara solar en mi terraza es preciosa.”</p><span class="who">Marta R. · Valencia</span></div>
+<div class="card rv"><p class="q">“Encargué una con el nombre de mi hija grabado. Llegó perfecta y en una caja de cartón reciclado.”</p><span class="who">Javier L. · Bilbao</span></div>
+<div class="card rv"><p class="q">“Equipamos el restaurante entero. Nos ahorra luz y los clientes preguntan por ellas.”</p><span class="who">Casa Olivo · Sevilla</span></div>
+</div></section>
+
+<section class="sheet tight" id="faq">
+<h2>Preguntas frecuentes</h2>
+<details><summary>¿Cuánto dura la batería de las lámparas solares?</summary><p>Unas 12 horas de luz tras una carga solar completa de 6–8 horas.</p></details>
+<details><summary>¿Cuánto tarda un pedido personalizado?</summary><p>Entre 5 y 7 días laborables de elaboración, más 48 h de envío.</p></details>
+<details><summary>¿Puedo devolver una lámpara personalizada?</summary><p>Sí, tienes 30 días. Si hay defecto de fabricación, la reparamos o sustituimos sin coste.</p></details>
+<details><summary>¿Hacéis pedidos para empresas y hoteles?</summary><p>Sí. Escríbenos a empresas@ecolight.es y te preparamos presupuesto con descuento por volumen.</p></details>
+<div class="news"><input type="text" id="em" placeholder="Tu correo electrónico"><button class="btn g" id="sb">Suscribirme</button></div>
+</section>
+
+<section class="sheet" id="tienda">
+<div class="final" style="margin-bottom:34px"><h2>Ven a ver cómo nace la luz</h2><p>Visita nuestro showroom y taller abierto: prueba las lámparas y diseña la tuya con un artesano.</p><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Calle+del+Reciclaje+18+Madrid">Cómo llegar</a></div>
+<div class="info">
+<div><div class="map">📍</div><h3>EcoLight Taller &amp; Showroom</h3><p>Calle del Reciclaje, 18</p><p>28012 Madrid, España</p><p>Metro: Lavapiés · Bus: 27, 34</p></div>
+<div><h3>Horario</h3><p>Lunes a viernes: 10:00 – 20:00</p><p>Sábados: 10:00 – 14:00</p><p>Domingos y festivos: cerrado</p><p>Visitas guiadas al taller: sábados 11:00</p></div>
+<div><h3>Atención al cliente</h3><p>📞 <a href="tel:+34900123456">900 123 456</a> (gratuito)</p><p>💬 WhatsApp: <a href="tel:+34600123456">+34 600 123 456</a></p><p>✉️ <a href="mailto:soporte@ecolight.es">soporte@ecolight.es</a></p><p>Lun–vie 9:00–19:00 · Respuesta en menos de 24 h</p></div>
+<div><h3>Síguenos</h3><p><a href="#inicio">Instagram</a> · <a href="#inicio">TikTok</a> · <a href="#inicio">Pinterest</a> · <a href="#inicio">YouTube</a></p><div class="pays"><span>VISA</span><span>Mastercard</span><span>PayPal</span><span>Bizum</span><span>Apple Pay</span></div></div>
+</div>
+<p class="legal"><a href="#inicio">Aviso legal</a><a href="#inicio">Privacidad</a><a href="#inicio">Cookies</a><a href="#inicio">Envíos y devoluciones</a><br>© 2026 EcoLight Soluciones Sostenibles S.L. · CIF B-00000000 · Hecho con materiales reciclados 🌱</p>
+</section>
+</main>
+<div id="toast"></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const M={b:'Botella',l:'Lata',c:'Cartón'},BASE={b:36,l:32,c:28};
+const P=[['Aurora','b',1,39,'#f6b93b','Botella de vidrio con luz cálida.','p-s'],['Faro','l',1,34,'#e9a23b','Lata perforada que dibuja estrellas.','p-s'],['Bosque','c',0,29,'#c98d5a','Cartón tallado en capas.','p-h'],['Brote','b',1,42,'#7fc08a','Botella verde con calado floral.','p-h'],['Luciérnaga','l',0,31,'#f4e4b5','Luz tenue para mesitas de noche.','p-s'],['Ola','c',0,33,'#e58f5a','Ondas de cartón, ambiente cálido.','p-o'],['Alba','b',0,37,'#f4e4b5','Botella translúcida, luz de amanecer.','p-o'],['Ámbar','l',1,36,'#d9a066','Lata con luz de atardecer.','p-h'],['Selva','c',1,45,'#7fc08a','Gran formato solar para jardín.','p-h'],['Nube','b',0,35,'#f4e4b5','Vidrio esmerilado y luz suave.','p-o'],['Cometa','l',0,38,'#e58f5a','Estrellas fugaces calizadas.','p-s'],['Musgo','c',0,32,'#7fc08a','Cartón verde de aire bosque.','p-h']];
+let cn=0,ct=0,tm;
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(tm);tm=setTimeout(()=>e.classList.remove('on'),2200)}
+function buy(n,p){cn++;ct+=p;$('#cn').textContent=cn;$('#ct').textContent=ct+' €';toast('✔ '+n+' añadida al carrito')}
+$('#grid').innerHTML=P.map((p,i)=>`<div class="card rv" data-m="${p[1]}" data-s="${p[2]}"><div class="thumb"><div class="lamp ${p[1]} ${p[6]} ${p[2]?'sol':''}" style="--glow:${p[4]}"><span class="pat"></span><span class="sp"></span></div></div><div class="row"><h3>${p[0]}</h3>${p[2]?'<span class="badge">Solar ☀️</span>':''}</div><small>${M[p[1]]} reciclada</small><p>${p[5]}</p><div class="row"><span class="price">${p[3]} €</span><span><button class="btn g s" data-c="${i}">Personalizar</button> <button class="btn s" data-a="${i}">Añadir</button></span></div></div>`).join('');
+$('#grid').onclick=e=>{const a=e.target.dataset.a,c=e.target.dataset.c;if(a!=null)buy(P[a][0],P[a][3]);if(c!=null){const p=P[c];st.m=p[1];st.p=p[6];st.g=p[4];st.sol=p[2];ui();$('#personaliza').scrollIntoView()}}
+$('#flt').onclick=e=>{const f=e.target.dataset.f;if(!f)return;$$('#flt button').forEach(b=>b.classList.toggle('on',b===e.target));$$('#grid .card').forEach(c=>c.style.display=f=='all'||c.dataset.m==f||(f=='s'&&c.dataset.s=='1')?'':'none')}
+const st={m:'b',p:'p-s',g:'#f6b93b',z:'1',sol:0},pl=$('#pl');
+function ui(){pl.className='lamp '+st.m+' '+st.p+(st.sol?' sol':'');pl.style.setProperty('--glow',st.g);pl.style.setProperty('--s',st.z);$('#eg').textContent=$('#nm').value.toUpperCase();
+$$('#mat button').forEach(b=>b.classList.toggle('on',b.dataset.v==st.m));$$('#pt button').forEach(b=>b.classList.toggle('on',b.dataset.v==st.p));$$('#col button').forEach(b=>b.classList.toggle('on',b.dataset.v==st.g));$$('#sz button').forEach(b=>b.classList.toggle('on',b.dataset.v==st.z));$('#sol').classList.toggle('on',!!st.sol);
+st.price=BASE[st.m]+(st.z=='1.15'?16:st.z=='1'?8:0)+(st.sol?12:0)+($('#nm').value?5:0);$('#pr').textContent=st.price+' €'}
+[['#mat','m'],['#pt','p'],['#col','g'],['#sz','z']].forEach(([s,k])=>$(s).onclick=e=>{if(e.target.dataset.v!=null){st[k]=e.target.dataset.v;ui()}});
+$('#sol').onclick=()=>{st.sol=st.sol?0:1;ui()};$('#nm').oninput=ui;
+$('#add').onclick=()=>buy('Lámpara personalizada',st.price);
+$('#sb').onclick=()=>{toast($('#em').value.includes('@')?'¡Gracias por suscribirte!':'Introduce un correo válido')};
+ui();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('in');const n=e.target.querySelector('[data-n]');if(n){const t=+n.dataset.n;let i=0;const s=()=>{i+=t/60;n.textContent=Math.min(Math.round(i),t).toLocaleString('es-ES');if(i<t)requestAnimationFrame(s)};s()}io.unobserve(e.target)}),{threshold:.15});
+$$('.rv').forEach(e=>io.observe(e));
+const wow=$('.wow');for(let i=0;i<24;i++){const f=document.createElement('i');f.className='ff';f.style.cssText=`left:${Math.random()*100}%;top:${20+Math.random()*75}%;--x:${Math.random()*80-40}px;--y:${-Math.random()*90}px;--t:${5+Math.random()*6}s;animation-delay:-${Math.random()*8}s`;wow.appendChild(f)}
+const hl=$$('.hl');hl.forEach((h,i)=>{setTimeout(()=>h.classList.add('on'),900+i*450);h.querySelector('.sh').onclick=()=>h.classList.toggle('on')});setTimeout(()=>wow.classList.add('lit'),900+hl.length*450);
+wow.addEventListener('pointermove',e=>{const r=wow.getBoundingClientRect();$('.hls').style.transform=`translateX(${((e.clientX-r.left)/r.width-.5)*-18}px)`});
+</script>
+</body>
+</html>
